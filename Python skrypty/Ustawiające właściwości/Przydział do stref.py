@@ -235,7 +235,7 @@ if run:
         else:
             sheet.cell(row, 2).value = zone
             row += 1
-    functions.AutoFitWorksheetColumns(sheet)
+    functions.auto_fit_worksheet_columns(sheet)
     excelFilePath = os.path.join(outputFolder, outputFileName)
     try:
         wb.save(excelFilePath)
