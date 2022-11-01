@@ -1,8 +1,9 @@
 from archicad import ACConnection
-from Pakiet import funkcje
+from Pakiet import funkcje as functions
 from openpyxl import Workbook
 from openpyxl.styles import Font, Border, Side
 import os
+
 conn = ACConnection.connect()
 assert conn
 
@@ -11,16 +12,17 @@ act = conn.types
 acu = conn.utilities
 
 ''' KONFIGURACJA SKRYPTU '''
-fileIFC = "/Volumes/05_Modelowanie/Python skrypty/Inne/Pliki IFC/4 modelowanie.ifc" # Ścieżka pliku IFC
-outputFileName = "Zestawienie ścian według pomieszczeń.xlsx" # Nazwa wyjściowego arkusza Excel
-outputFolder = "/Volumes/05_Modelowanie/Python skrypty/Inne/Arkusze" # Ścieżka wyjściowego arkusza
-typesOfElements = ['Ściana','Przegroda'] # rozpatrywane typy elementów
+fileIFC = "/Volumes/05_Modelowanie/Python skrypty/Inne/Pliki IFC/4 modelowanie.ifc"  # Ścieżka pliku IFC
+outputFileName = "Zestawienie ścian według pomieszczeń.xlsx"  # Nazwa wyjściowego arkusza Excel
+outputFolder = "/Volumes/05_Modelowanie/Python skrypty/Inne/Arkusze"  # Ścieżka wyjściowego arkusza
+typesOfElements = ['Ściana', 'Przegroda']  # rozpatrywane typy elementów
 StatesOfCurtainWall = (True, False)
 
 ''' Sprawdzanie dostępności właściwości '''
-functions = funkcje
 allProperties = acc.GetAllPropertyNames()
-neededProperties = (['Do skryptów', 'Nazwa'], ['Do skryptów', 'Kondygnacja'], ['Do skryptów', 'Materiał'], ['Do skryptów', 'Przydzielone'])
+neededProperties = (
+    ['Do skryptów', 'Nazwa'], ['Do skryptów', 'Kondygnacja'], ['Do skryptów', 'Materiał'],
+    ['Do skryptów', 'Przydzielone'])
 run = functions.is_all_properties_available(allProperties, neededProperties)
 if run:
 
@@ -101,7 +103,7 @@ if run:
     for box in boundingBoxes:
         zoneName = zoneNames[i].propertyValues[0].propertyValue.value
         zoneNumber = zoneNumbers[i].propertyValues[0].propertyValue.value
-        prefix = str(zoneNumber) + ' ' + zoneName
+        prefix = f'{zoneNumber} {zoneName}'
         storyNumber = storyOfZone[i].propertyValues[0].propertyValue.value
         if prefix in wykaz:
             polygonZone = wykaz[prefix]
@@ -118,8 +120,8 @@ if run:
             yMax2 = elembox.boundingBox2D.yMax * 100
             if typ == "Przegroda strukturalna":
                 slantAngle = slantAngles[j].propertyValues[0].propertyValue.value
-                if slantAngle != 0:
-                    if StatesOfCurtainWall[0] is True:
+                if slantAngle != 0:  # jeśli przegroda jest "stojąca"
+                    if StatesOfCurtainWall[0] is True:  # jeśli ustawiono uwzględnianie przegród stojących
                         thickness = thicknesses[j].propertyValues[0].propertyValue.value * 100
                         lengthx = xMax2 - xMin2
                         lengthy = yMax2 - yMin2
@@ -136,14 +138,14 @@ if run:
                         j += 1
                         continue
                 else:
-                    if StatesOfCurtainWall[1] is False:
+                    if StatesOfCurtainWall[1] is False:  # jeśli ustawiono nieuwzględnianie przegród leżących
                         j += 1
                         continue
             vertices2 = [xMin2, xMax2, yMin2, yMax2]
             polygonElement = functions.generate_polygon_element(vertices2)
             state = functions.multi_is_inside(polygonZone, polygonElement)
-            if state is True:
-                if storyNumber == storyNumber2:
+            if state is True:  # jeśli element znajduje się w sprawdzanej strefie w 2D
+                if storyNumber == storyNumber2:  # jeśli element znajduje się na tej samej kondygnacji co strefa
                     guid = elements[j]
                     if guid not in assignedElements:
                         assignedElements.append(guid)
@@ -189,17 +191,17 @@ if run:
     sheet = wb.active
     font = Font(name='Arial', size=14)
     titlefont = Font(name='Arial', size=17)
-    yes = Side(border_style='thin',color='00000000')
+    yes = Side(border_style='thin', color='00000000')
     border1 = Border(left=yes, right=yes, top=yes, bottom=yes)
     border2 = Border(left=yes, right=yes)
-    border3 = Border(left=yes, right=yes, top=None, bottom = yes)
+    border3 = Border(left=yes, right=yes, top=None, bottom=yes)
     settings = functions.set_format_of_cell
 
     title1 = 'Numer i nazwa strefy'
     title2 = 'Typ elementu'
     title3 = 'ID'
     title4 = 'Materiał'
-    settings(sheet, 2, 2,title1, titlefont, border1)
+    settings(sheet, 2, 2, title1, titlefont, border1)
     settings(sheet, 2, 3, title2, titlefont, border1)
     settings(sheet, 2, 4, title3, titlefont, border1)
     settings(sheet, 2, 5, title4, titlefont, border1)
@@ -227,9 +229,9 @@ if run:
             endRow = row - 1
             settings(sheet, startRow, 2, zone, font, border1)
             sheet.merge_cells(start_row=startRow, end_row=endRow, start_column=2, end_column=2)
-            sheet.cell(endRow,3).border = border3
-            sheet.cell(endRow,4).border = border3
-            sheet.cell(endRow,5).border = border3
+            sheet.cell(endRow, 3).border = border3
+            sheet.cell(endRow, 4).border = border3
+            sheet.cell(endRow, 5).border = border3
         else:
             sheet.cell(row, 2).value = zone
             row += 1
@@ -238,17 +240,17 @@ if run:
     try:
         wb.save(excelFilePath)
     except BlockingIOError:
-        print("\nMasz otwarty plik Excel, który uniemożliwia zapisanie arkusza. \nZamknij go i uruchom skrypt ponownie.")
+        print(
+            "\nMasz otwarty plik Excel, który uniemożliwia zapisanie arkusza. \nZamknij go i uruchom skrypt ponownie.")
     else:
         acu.OpenFile(excelFilePath)
         if os.path.exists(excelFilePath):
             print("Zapisano plik Excel.")
-        
+
         ''' Oznaczenie nieprzydzielonych elementów '''
         aloneElements = [element for element in elements if element not in assignedElements]
-        l = len(aloneElements)
         i = 0
-        if l > 0:
+        if aloneElements:
             print()
             print("Niektórych elementów nie przydzielono do zadnej strefy.")
             elementPropertyValues = []
@@ -257,7 +259,7 @@ if run:
                 elementId = element.elementId
                 x = act.ElementPropertyValue(elementId, propertyId9, propertyValue)
                 elementPropertyValues.append(x)
-                i += 1       
+                i += 1
             i = 0
             propertyValue = act.NormalStringPropertyValue('TAK', 'string', 'normal')
             for element in assignedElements:
@@ -267,7 +269,8 @@ if run:
                 i += 1
 
         y = acc.SetPropertyValuesOfElements(elementPropertyValues)
-        if y[0].success: 
+        if y[0].success:
             print("Przydzielono im wartość 'NIE' dla właściwości 'Przydzielone'.")
-        else: 
-            print(f"Operacja przydzielania wartości do właściwości \n 'Przydzielone' zakończona niepowodzeniem.\n{y[0].error}")
+        else:
+            print(
+                f"Operacja przydzielania wartości do właściwości \n 'Przydzielone' zakończona niepowodzeniem.\n{y[0].error}")
