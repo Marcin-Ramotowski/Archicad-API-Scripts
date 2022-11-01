@@ -59,10 +59,6 @@ def check_direction(rawInfo):
     """ Sprawdza kierunek, w który zmierzają kolejne koordynaty. """
     infos = przerabiarka(rawInfo)
     infos = [round(infos[0], 1), round(infos[1], 1)]
-    if infos[0] == -0.0:
-        infos[0] == 0.0
-    if infos[1] == -0.0:
-        infos[1] == 0.0
     infos = tuple(infos)
     isReversed = True if abs(infos[1]) > 0 else False
     if infos[0] >= 0:
@@ -78,7 +74,7 @@ def check_direction(rawInfo):
     elif infos[1] > 0:
         isPositiveX = False
         isPositiveY = True
-        isReserved = False
+        isReversed = False
     else:
         isPositiveX = False
         isPositiveY = False
@@ -134,9 +130,11 @@ def generate_zoneInfo(space):
 
 def decode_polish(text):
     """ Wstawia znaki polskie do nazw wyciągniętych z pliku IFC."""
-    translator = {'\\X2\\0105\\X0\\': 'ą', '\\X2\\0104\\X0\\': 'Ą', '\\X2\\0106\\X0\\': 'Ć', '\\X2\\0107\\X0\\': 'ć', '\\X2\\0119\\X0\\': 'ę', '\\X2\\0118\\X0\\': 'Ę', '\\X2\\017B\\X0\\': 'Ż', '\\X2\\017C\\X0\\': 'ż',
-                  '\\X2\\0143\\X0\\': 'Ń', '\\X2\\0144\\X0\\': 'ń', '\\X2\\0179\\X0\\': 'Ź', '\\X2\\017A\\X0\\': 'ź', '\\X2\\015A\\X0\\': 'Ś', '\\X2\\015B\\X0\\': 'ś',
-                  '\\X2\\00D3\\X0\\': 'Ó', '\\X2\\00F3\\X0\\': 'ó', '\\X2\\0141\\X0\\': 'Ł', '\\X2\\0142\\X0\\': 'ł'}
+    translator = {'\\X2\\0105\\X0\\': 'ą', '\\X2\\0104\\X0\\': 'Ą', '\\X2\\0106\\X0\\': 'Ć', '\\X2\\0107\\X0\\': 'ć',
+                  '\\X2\\0119\\X0\\': 'ę', '\\X2\\0118\\X0\\': 'Ę', '\\X2\\017B\\X0\\': 'Ż', '\\X2\\017C\\X0\\': 'ż',
+                  '\\X2\\0143\\X0\\': 'Ń', '\\X2\\0144\\X0\\': 'ń', '\\X2\\0179\\X0\\': 'Ź', '\\X2\\017A\\X0\\': 'ź',
+                  '\\X2\\015A\\X0\\': 'Ś', '\\X2\\015B\\X0\\': 'ś', '\\X2\\00D3\\X0\\': 'Ó', '\\X2\\00F3\\X0\\': 'ó',
+                  '\\X2\\0141\\X0\\': 'Ł', '\\X2\\0142\\X0\\': 'ł'}
     for string in translator:
         if text.find(string) != -1:
             text = text.replace(string, translator[string])
@@ -195,7 +193,7 @@ def generate_polygon_element(vertices):
     return polygonElement
 
 
-def AutoFitWorksheetColumns(ws):
+def auto_fit_worksheet_columns(ws):
     """ Automatycznie ustawia szerokość kolumn arkusza na podstawie maksymalnej długości tekstu w każdej kolumnie. """
     for columnCells in ws.columns:
         length = max(len(str(cell.value)) for cell in columnCells) + 8
@@ -205,11 +203,11 @@ def AutoFitWorksheetColumns(ws):
 def set_format_of_cell(sheet, row, column, value, font=None, border=None, alignment=None):
     """" Formatuje daną komórkę arkusza."""
     sheet.cell(row, column).value = value
-    if font != None:
+    if font is not None:
         sheet.cell(row, column).font = font
-    if border != None:
+    if border is not None:
         sheet.cell(row, column).border = border
-    if alignment != None:
+    if alignment is not None:
         sheet.cell(row, column).alignment = alignment
 
 
@@ -226,8 +224,7 @@ def is_all_properties_available(allPropertiesNames, neededProperties):
 
     missingProperties = [
         property for property in neededProperties if property not in userProperties and property != []]
-    l = len(missingProperties)
-    if l > 0:
+    if missingProperties:
         print("W twoim projekcie brakuje następujących wymaganych właściwości:")
         for property in missingProperties:
             print(property)
@@ -241,9 +238,9 @@ def is_all_properties_available(allPropertiesNames, neededProperties):
 def translate_types(polishTypes):
     """ Zwraca nazwy typów obiektów przetłumaczone na język angielski. """
     dictionary = {'Ściana': 'Wall', 'Słup': 'Column', 'Belka': 'Beam', 'Okno': 'Window', 'Drzwi': 'Door',
-                  'Obiekt': 'Object', 'Lampa': 'Lamp', 'Strop': 'Slab', 'Dach': 'Roof', 'Siatka': 'Mesh', 'Strefa': 'Zone',
-                  'Przegroda': 'CurtainWall', 'Powłoka': 'Shell', "Świetlik": 'Skylight', 'Kształt': 'Morph',
-                  'Schody': 'Stair', 'Balustrada': 'Railing', 'Otwór': 'Opening'}
+                  'Obiekt': 'Object', 'Lampa': 'Lamp', 'Strop': 'Slab', 'Dach': 'Roof', 'Siatka': 'Mesh',
+                  'Strefa': 'Zone', 'Przegroda': 'CurtainWall', 'Powłoka': 'Shell', "Świetlik": 'Skylight',
+                  'Kształt': 'Morph', 'Schody': 'Stair', 'Balustrada': 'Railing', 'Otwór': 'Opening'}
     englishTypes = []
     for type in polishTypes:
         type = type.lower().capitalize()
