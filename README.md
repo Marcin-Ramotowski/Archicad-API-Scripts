@@ -1,2 +1,2 @@
 # Archicad-API-Scripts
-Skrypty do automatyzacji niektórych operacji w programie Archicad
+Scripts to automate some operations in Archicad
