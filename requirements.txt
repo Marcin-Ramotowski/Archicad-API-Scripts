@@ -1,0 +1,3 @@
+archicad==26.3000
+et-xmlfile==1.1.0
+openpyxl==3.0.10
