@@ -63,9 +63,9 @@ Then load the project requirements using the command: "pip install -r requiremen
 # Usages
 
   ## Excel Exporter
-  By default, it exports information about the dimensions of walls and beams to an Excel file. However, it is possible to freely select the set of analyzed design elements and the set of checked properties. It can be used in tandem with an Excel importer script gaining the ability to edit design elements through an Excel sheet.
-  With the help of variables in the configuration part, you can set the considered types of elements, the set of analyzed properties, the path of the new Excel file and its name, in turn.
-  In the first column and the first row of the exported file, you need to include guid numbers, which are unique identifiers for each object and each property. They are needed so that it is possible to quickly edit the exported properties and import them into Archicad using Excel importer.
+  It exports information about the design elements selected in the opened Archicad's window to an Excel file. It is also possible to freely select the set of checked properties. It can be used in tandem with an Excel importer script gaining the ability to edit design elements through an Excel sheet.
+  With the help of variables in the configuration part, you can set the set of analyzed properties and the path of the new Excel file with its name.
+  In the second column of the exported file, you need to include guid numbers, which are unique identifiers for each object in project. The names of the properties you have selected will be in the second row of the file as column headers starting from the second column. They are needed so that it is possible to quickly edit the exported properties and import them into Archicad using Excel importer.
   This script is based on a script created by Graphisoft with the same name.
  ## Excel importer
  It takes all the data from an Excel file and sets the properties of the listed objects as specified in such a file.  In order for the properties to be imported correctly in the Excel file, the guid's of all the objects must be in the first column, and the guid's of all the properties you want to change must be in the first row.

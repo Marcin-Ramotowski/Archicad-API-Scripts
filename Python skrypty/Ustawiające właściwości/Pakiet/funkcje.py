@@ -247,3 +247,15 @@ def translate_types(polishTypes):
         englishType = dictionary[type]
         englishTypes.append(englishType)
     return englishTypes
+
+
+def get_properties_ids(names:list, acu):
+    properties_ids = []
+    for name in names:
+        try:
+            property_id = acu.GetBuiltInPropertyId(name) if type(name) is str else acu.GetUserDefinedPropertyId(*name)
+        except ValueError:
+            print(f'Właściwość o nazwie {name} nie istnieje. Proszę podać jej poprawną nazwę.')
+        else:
+            properties_ids.append(property_id)
+    return properties_ids
