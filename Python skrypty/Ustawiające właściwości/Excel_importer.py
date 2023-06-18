@@ -1,59 +1,48 @@
-from archicad import ACConnection, handle_dependencies
-from typing import List, Dict, Any
-import os, sys, uuid
-
-handle_dependencies('openpyxl')
-
-from openpyxl import load_workbook
-
-conn = ACConnection.connect()
-assert conn
-
-acc = conn.commands
-act = conn.types
-acu = conn.utilities
-
-scriptFolder = os.path.dirname(os.path.realpath(__file__))
-
-################################ CONFIGURATION #################################
-inputFolder = scriptFolder
-inputFileName = "BeamAndWallGeometry.xlsx"
-################################################################################
+from Pakiet import funkcje as functions
+from Inicjator_polaczenia import acc, act
+import openpyxl
 
 
-excelFilePath = os.path.join(inputFolder, inputFileName)
-wb = load_workbook(excelFilePath)
-elemPropertyValues = []
-for sheet in wb.worksheets:
-	maxCol = sheet.max_column
-	maxRow = sheet.max_row
-	newPropertyValues = {}
-	elementIds = []
-	propertyIds = []
-	for col in range (2, maxCol + 1):
-		propertyIds.append(act.PropertyId(uuid.UUID(sheet.cell(1, col).value)))
-	for row in range (3, maxRow + 1):
-		newPropertyValues[row-3] = {col-2: sheet.cell(row, col).value for col in range (2, maxCol + 1)}
-		elementIds.append(act.ElementId(uuid.UUID(sheet.cell(row, 1).value)))
+''' STREFA KONFIGURACJI '''
+excel_file_path = r'Inne\Arkusze\Dane_obiektow.xlsx'
+sheet_name = "Sheet"
+aliases = {}
 
-	propertyValuesOfElements = acc.GetPropertyValuesOfElements(elementIds, propertyIds)
+# Załadowanie arkusza
+wb = openpyxl.load_workbook(excel_file_path)
+sheet = wb[sheet_name]
 
-	for ii in range(len(newPropertyValues)):
-		for jj in range(len(newPropertyValues[ii])):
-			try:
-				propertyValue = propertyValuesOfElements[ii].propertyValues[jj].propertyValue
-				propertyValue.value = newPropertyValues[ii][jj]
-				propertyValue.status = "normal"
-				elemPropertyValues.append(act.ElementPropertyValue(elementIds[ii], propertyIds[jj], propertyValue))
-			except:
-				continue
+# Pobranie identyfikatorów elementów i właściwości
+headers = functions.unpack_values(sheet.iter_rows(min_row=2, max_row=2, min_col=2))
+properties_names = list(map(lambda x: aliases[x], headers)) if aliases else headers
+properties_ids = functions.get_properties_ids(properties_names)
+guids = functions.wrap_values(sheet.iter_cols(max_col=1, min_row=3))
 
-acc.SetPropertyValuesOfElements(elemPropertyValues)	
+# pobranie wartości właściwości w projekcie
+properties = acc.GetPropertyValuesOfElements(guids, properties_ids)
 
-# Print the result
-elementIds = [i.elementId for i in elemPropertyValues]
-propertyIds = [act.PropertyId(guid) for guid in set(i.propertyId.guid for i in elemPropertyValues)]
-propertyValuesDictionary = acu.GetPropertyValuesDictionary(elementIds, propertyIds)
-for elementId, valuesDictionary in propertyValuesDictionary.items():
-	for propertyId, value in valuesDictionary.items():
-		print(f"{elementId.guid} {propertyId.guid} {value}")
+wrapped_values = []
+
+''' Przetwarzanie danych '''
+# uzupełnienie kolekcji wrapped_values nowymi wartościami właściwości wskazanymi w arkuszu
+for i, row in enumerate(sheet.iter_rows(min_row=3, min_col=2)):
+    values = [cell.value for cell in row]
+    for j, cell in enumerate(row):
+        value = cell.value
+        guid = guids[i]
+        property_value = properties[i].propertyValues[j].propertyValue
+        property_value.status = "normal"
+        property_value.value = value
+        wrapped_value = act.ElementPropertyValue(guids[i], properties_ids[j], property_value)
+        wrapped_values.append(wrapped_value)
+
+''' Monitorowanie wykonania poleceń'''
+# zebranie i wyświetlenie w konsoli komunikatów o błędach
+logs = acc.SetPropertyValuesOfElements(wrapped_values)
+errors = [f"Error code {log.error.code}: {log.error.message}" for log in logs if not log.success]
+if errors:
+    print('The following problems have occurred:')
+    for error in errors:
+        print(error)
+else:
+    print('All operations successfully completed')

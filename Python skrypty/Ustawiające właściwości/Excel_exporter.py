@@ -1,14 +1,7 @@
-from archicad import ACConnection
 from Pakiet import funkcje as functions
 from openpyxl import Workbook
+from Inicjator_polaczenia import acc, acu
 import os
-
-conn = ACConnection.connect()
-assert conn
-
-acc = conn.commands
-act = conn.types
-acu = conn.utilities
 
 
 ''' KONFIGURACJA SKRYPTU '''
@@ -17,7 +10,7 @@ properties_names = ['General_ElementID','Category_Position', 'General_3DLength',
 
 elements = acc.GetSelectedElements()
 headers = ['Element_Guid'] + properties_names
-all_properties_ids = functions.get_properties_ids(properties_names, acu)
+all_properties_ids = functions.get_properties_ids(properties_names)
 property_objects = acc.GetPropertyValuesOfElements(elements, all_properties_ids)
 
 wb = Workbook()

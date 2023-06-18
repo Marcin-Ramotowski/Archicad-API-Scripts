@@ -1,3 +1,5 @@
+from uuid import UUID
+from Inicjator_polaczenia import acc, act, acu
 
 def is_inside(polygon, point):
     """ Sprawdza, czy dany punkt leży wewnątrz danej figury."""
@@ -249,7 +251,7 @@ def translate_types(polishTypes):
     return englishTypes
 
 
-def get_properties_ids(names:list, acu):
+def get_properties_ids(names:list):
     properties_ids = []
     for name in names:
         try:
@@ -259,3 +261,10 @@ def get_properties_ids(names:list, acu):
         else:
             properties_ids.append(property_id)
     return properties_ids
+
+
+def unpack_values(cells_set):
+    return [cell.value for row in cells_set for cell in row]
+
+def wrap_values(cells_set):
+    return [act.ElementId(UUID(cell.value))for row in cells_set for cell in row]
