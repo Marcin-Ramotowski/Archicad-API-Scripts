@@ -47,9 +47,8 @@ List the ready scripts here:
       Chair numbering - It numbers the places by grouping them in rows according to height. Great to numbering places on the huge stadium, cinema or theatre.
       Zones numbering - It numbers the zones by assigning them an id based on their location.
       Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
-      IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Great for cleaning up the mess of item IDs.
+      IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Moreover to objects with the same dimensions assign the id of the first of these twin elements. Great for cleaning up the mess of item IDs.
       Room report - It collects data on the zone representing the room in question and inserts it into the indicated file at the indicated locations.
-      Shared Id - It assigns to objects with the same dimensions the id of the first of these twin elements.
       Shared Id for walls - It assigns the same id for these walls which have the same construction composite.
     I also created a separate package of functions used in the indicated scripts, especially for the most extensive Zone Allocation script. It can be found in the location: "Ustawiające właściwości\Pakiet"
 
@@ -120,9 +119,9 @@ Specifies which types of elements are to be analyzed. Type names should be enter
  
 ## IDs assignment
 The script assigns all elements on the exposed layers an Id consisting of two parts: a letter (denoting the type of element) and a number (which element of a given type it is in turn).
-For the script to work, you need the 'Położenie' property, which collects data about the position of the walls in order to distinguish exterior walls from interior ones. If you don't have it, you need to import it from the file '/Inne/Właściwości/Położenie.xml'. It gets this information from the Archicad built-in property with the 'Location' name displayed in the 'ID and Category' group.
-Walls should have the 'Położenie' property completed. Walls with undefined position will not get a new Id.
-Make sure that all items that should be assigned a new Id are visible. The script will not change the Id of invisible objects.
+When the script encounters at least 2 objects with the same dimensions, it assigns them all the Id of the one that was put up the earliest.
+The walls are divided by the script into 3 groups: external, internal and unidentified. This allocation is carried out based on the value of the "Location" property displayed in the "ID and Category" group. It must be completed for the assignment to be carried out correctly. Depending on the location so expressed, the wall ID starts with the prefix "SZ" (external), "SW" (internal) or "SN" (unidentified).
+Make sure that all items that should be assigned a new Id are visible. The script will not change the Id of objects which are not showed on the current plan.
 
 ## Room report
 For each zone, it generates a room report containing mainly such information as the zone's equipment, a list of doors and windows in the zone, and a list of neighboring zones based on a pattern from the file: '/Inne/Arkusze/RDS Wzór.xlsx'
