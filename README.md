@@ -1,18 +1,18 @@
 # Archicad-API-Scripts
 
-    Scripts to automate some operations in Archicad
+Scripts to automate some operations in Archicad
 
 # Table of Contents
 
-    General Info
-    Technologies Used
-    Features
-    Setup
-    Usages
-    Project Status
-    Room for Improvement
-    Acknowledgements
-    Contact
+* General Info
+* Technologies Used
+* Features
+* Setup
+* Usages
+* Project Status
+* Room for Improvement
+* Acknowledgements
+* Contact
 
 # General Information
 
@@ -34,23 +34,23 @@ and make changes to model elements.
 List the ready scripts here:
     
     Scripts printing information on the screen:
-      - Navigator Elements - It displays a tree showing the available elements in the navigator and their hierarchy.
-      - Project Elements - It subtotals the elements of each type in the project and prints the results on the screen.
-      - Repeating IDs - It displays id values that occur more than once in the project.
-      - Sorting - It sorts elements of a given type according to the first specified value in ascending or descending order.
-      - Check Properties - It displays values of all selected properties for all elements of the specified type.
-      - All properties - It displays names of all properties available in the project.
-      - Get property guid - It gets guid of selected property and displays on the screen.
+      Navigator Elements - It displays a tree showing the available elements in the navigator and their hierarchy.
+      Project Elements - It subtotals the elements of each type in the project and prints the results on the screen.
+      Repeating IDs - It displays id values that occur more than once in the project.
+      Sorting - It sorts elements of a given type according to the first specified value in ascending or descending order.
+      Check Properties - It displays values of all selected properties for all elements of the specified type.
+      All properties - It displays names of all properties available in the project.
+      Get property guid - It gets guid of selected property and displays on the screen.
     Scripts that set properties of project elements:
-      - Excel exporter - It creates a new .xlsx file and places in it the values of the indicated properties from the elements of the indicated types.
-      - Excel importer - It retrieves data from the specified .xlsx file and sets property values in the project according to that data.
-      - Chair numbering - It numbers the places by grouping them in rows according to height. Great to numbering places on the huge stadium, cinema or theatre.
-      - Zones numbering - It numbers the zones by assigning them an id based on their location.
-      - Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
-      - IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Great for cleaning up the mess of item IDs.
-      - Room report - It collects data on the zone representing the room in question and inserts it into the indicated file at the indicated locations.
-      - Shared Id - It assigns to objects with the same dimensions the id of the first of these twin elements.
-      - Shared Id for walls - It assigns the same id for these walls which have the same construction composite.
+      Excel exporter - It creates a new .xlsx file and places in it the values of the indicated properties from the elements highlighted in the opened Archicad's window .
+      Excel importer - It retrieves data from the specified .xlsx file and sets property values in the project according to that data.
+      Chair numbering - It numbers the places by grouping them in rows according to height. Great to numbering places on the huge stadium, cinema or theatre.
+      Zones numbering - It numbers the zones by assigning them an id based on their location.
+      Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
+      IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Great for cleaning up the mess of item IDs.
+      Room report - It collects data on the zone representing the room in question and inserts it into the indicated file at the indicated locations.
+      Shared Id - It assigns to objects with the same dimensions the id of the first of these twin elements.
+      Shared Id for walls - It assigns the same id for these walls which have the same construction composite.
     I also created a separate package of functions used in the indicated scripts, especially for the most extensive Zone Allocation script. It can be found in the location: "Ustawiające właściwości\Pakiet"
 
 # Setup
@@ -63,7 +63,7 @@ Then load the project requirements using the command: "pip install -r requiremen
 # Usages
 
   ## Excel Exporter
-  It exports information about the design elements selected in the opened Archicad's window to an Excel file. It is also possible to freely select the set of checked properties. It can be used in tandem with an Excel importer script gaining the ability to edit design elements through an Excel sheet.
+  It exports information about the design elements highlighted in the opened Archicad's window to an Excel file. It is also possible to freely select the set of checked properties. It can be used in tandem with an Excel importer script gaining the ability to edit design elements through an Excel sheet.
   With the help of variables in the configuration part, you can set the set of analyzed properties and the path of the new Excel file with its name.
   In the second column of the exported file, you need to include guid numbers, which are unique identifiers for each object in project. The names of the properties you have selected will be in the second row of the file as column headers starting from the second column. They are needed so that it is possible to quickly edit the exported properties and import them into Archicad using Excel importer.
   This script is based on a script created by Graphisoft with the same name.
@@ -142,13 +142,14 @@ All analyzed walls must be on visible layers. The script analyzes only the walls
 
 Project is: done. But the quality of the code is currently being improved.
 # Room for Improvement
-    improve code in IDs assignment script - replacing the structure with a large number of if statements on the dictionary
-    use of recursion in Navigator Elements script
-    change polish name to english in order to code unification
+* improve code in IDs assignment script - replacing the structure with a large number of 'if'
+statements on the dictionary
+* use of recursion in Navigator Elements script
+* change polish name to english in order to code unification
 
 # Acknowledgements
 
-    Many thanks to Barbara Kowalczyk, for the idea of this project and support shown during the implementation.
+Many thanks to Barbara Kowalczyk, for the idea of this project and support shown during the implementation.
 
 # Contact
 
