@@ -48,7 +48,6 @@ List the ready scripts here:
       Zones numbering - It numbers the zones by assigning them an id based on their location.
       Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
       IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Moreover to objects with the same dimensions assign the id of the first of these twin elements. Great for cleaning up the mess of item IDs.
-      Room report - It collects data on the zone representing the room in question and inserts it into the indicated file at the indicated locations.
       Shared Id for walls - It assigns the same id for these walls which have the same construction composite.
     I also created a separate package of functions used in the indicated scripts, especially for the most extensive Zone Allocation script. It can be found in the location: "Ustawiające właściwości\Pakiet"
 
@@ -122,12 +121,6 @@ The script assigns all elements on the exposed layers an Id consisting of two pa
 When the script encounters at least 2 objects with the same dimensions, it assigns them all the Id of the one that was put up the earliest.
 The walls are divided by the script into 3 groups: external, internal and unidentified. This allocation is carried out based on the value of the "Location" property displayed in the "ID and Category" group. It must be completed for the assignment to be carried out correctly. Depending on the location so expressed, the wall ID starts with the prefix "SZ" (external), "SW" (internal) or "SN" (unidentified).
 Make sure that all items that should be assigned a new Id are visible. The script will not change the Id of objects which are not showed on the current plan.
-
-## Room report
-For each zone, it generates a room report containing mainly such information as the zone's equipment, a list of doors and windows in the zone, and a list of neighboring zones based on a pattern from the file: '/Inne/Arkusze/RDS Wzór.xlsx'
-The first two variables in the configuration part of the script specify, in turn, the path of the newly created sheet and its name.
-All properties from the file '/Inne/Właściwości/Dane strefy.xml' must be available:
-From the 'Zone Data' group, properties named: 'Wymagana temperatura', 'Wymagane oświetlenie' collect passively (i.e., the user has to set a value for them) the information that will be placed in the report in the upper right corner. If you want to include them in the report, these properties should be completed.
 
 ## Shared Id
 When the script encounters at least 2 objects with the same dimensions, it assigns them all the Id of the one that was put up the earliest.
