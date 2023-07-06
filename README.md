@@ -44,7 +44,6 @@ List the ready scripts here:
     Scripts that set properties of project elements:
       Excel exporter - It creates a new .xlsx file and places in it the values of the indicated properties from the elements highlighted in the opened Archicad's window .
       Excel importer - It retrieves data from the specified .xlsx file and sets property values in the project according to that data.
-      Chair numbering - It numbers the places by grouping them in rows according to height. Great to numbering places on the huge stadium, cinema or theatre.
       Zones numbering - It numbers the zones by assigning them an id based on their location.
       Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
       IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Moreover to objects with the same dimensions assign the id of the first of these twin elements. Great for cleaning up the mess of item IDs.
@@ -68,10 +67,6 @@ Then load the project requirements using the command: "pip install -r requiremen
  ## Excel importer
  It takes all the data from an Excel file and sets the properties of the listed objects as specified in such a file.  In order for the properties to be imported correctly in the Excel file, the guid's of all the objects must be in the first column, and the guid's of all the properties you want to change must be in the first row.
  In the configuration area of the script in the variable values, you need to specify: the path of this folder where the file to be imported is located and the name of the imported file.
- This script is based on a script created by Graphisoft with the same name.
- ## Chair numbering
- Number all objects classified as chairs by assigning them an Id consisting of: the row designation (rows are designated by letters A-Z), the object number in the row, and the name of the side (left or right)
- For objects to be given a row designation other than A, successive rows must be higher and higher by a value not exceeding the value of the ROW_GROUPING_LIMIT variable (measured in meters).
  This script is based on a script created by Graphisoft with the same name.
  ## Zones numbering
  It numbers all the zones in the project. The assigned numbers always start with the floor number. The script does not read the floor numbers from the project, but segregates the zones into separate groups based on the height at which they are located. It assigns the next storey number to each successive group. So if, for example, there is no zone in the middle storey, the script will not take this into account when numbering.
@@ -136,7 +131,6 @@ Project is: done. But the quality of the code is currently being improved.
 # Room for Improvement
 * improve code in IDs assignment script - replacing the structure with a large number of 'if'
 statements on the dictionary
-* use of recursion in Navigator Elements script
 * change polish name to english in order to code unification
 
 # Acknowledgements
