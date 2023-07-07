@@ -202,15 +202,22 @@ def auto_fit_worksheet_columns(ws):
         ws.column_dimensions[columnCells[0].column_letter].width = length
 
 
-def set_format_of_cell(sheet, row, column, value, font=None, border=None, alignment=None):
-    """" Formatuje daną komórkę arkusza."""
-    sheet.cell(row, column).value = value
+def set_field_parameters(sheet, row, column, value=None, font=None, border=None,
+                        number_format=None, fill=None, alignment=None):
+    """" Wypełnia parametry wskazanej komórki arkusza."""
+    cell = sheet.cell(row, column)
+    if value is not None:
+        cell.value = value
     if font is not None:
-        sheet.cell(row, column).font = font
+        cell.font = font
     if border is not None:
-        sheet.cell(row, column).border = border
+        cell.border = border
+    if number_format is not None:
+        cell.number_format = number_format
+    if fill is not None:
+        cell.fill = fill
     if alignment is not None:
-        sheet.cell(row, column).alignment = alignment
+        cell.alignment = alignment
 
 
 def is_all_properties_available(allPropertiesNames, neededProperties):

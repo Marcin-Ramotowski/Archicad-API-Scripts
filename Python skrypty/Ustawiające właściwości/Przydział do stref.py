@@ -195,7 +195,7 @@ if run:
     border1 = Border(left=yes, right=yes, top=yes, bottom=yes)
     border2 = Border(left=yes, right=yes)
     border3 = Border(left=yes, right=yes, top=None, bottom=yes)
-    settings = functions.set_format_of_cell
+    settings = functions.set_field_parameters
 
     title1 = 'Numer i nazwa strefy'
     title2 = 'Typ elementu'

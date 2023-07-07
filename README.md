@@ -33,21 +33,22 @@ and make changes to model elements.
 
 List the ready scripts here:
     
-    Scripts printing information on the screen:
-      Navigator Elements - It displays a tree showing the available elements in the navigator and their hierarchy.
-      Project Elements - It subtotals the elements of each type in the project and prints the results on the screen.
-      Repeating IDs - It displays id values that occur more than once in the project.
-      Sorting - It sorts elements of a given type according to the first specified value in ascending or descending order.
-      Check Properties - It displays values of all selected properties for all elements of the specified type.
-      All properties - It displays names of all properties available in the project.
-      Get property guid - It gets guid of selected property and displays on the screen.
+  Scripts printing information on the screen:
+    - Navigator Elements - It displays a tree showing the available elements in the navigator and their hierarchy.
+    - Project Elements - It subtotals the elements of each type in the project and prints the results on the screen.
+    - Repeating IDs - It displays id values that occur more than once in the project.
+    - Sorting - It sorts elements of a given type according to the first specified value in ascending or descending order.
+    - Check Properties - It displays values of all selected properties for all elements of the specified type.
+    - All properties - It displays names of all properties available in the project.
+    - Get property guid - It gets guid of selected property and displays on the screen.
     Scripts that set properties of project elements:
-      Excel exporter - It creates a new .xlsx file and places in it the values of the indicated properties from the elements highlighted in the opened Archicad's window .
-      Excel importer - It retrieves data from the specified .xlsx file and sets property values in the project according to that data.
-      Zones numbering - It numbers the zones by assigning them an id based on their location.
-      Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
-      IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Moreover to objects with the same dimensions assign the id of the first of these twin elements. Great for cleaning up the mess of item IDs.
-      Shared Id for walls - It assigns the same id for these walls which have the same construction composite.
+     -Excel exporter - It creates a new .xlsx file and places in it the values of the indicated properties from the elements highlighted in the opened Archicad's window .
+    - Excel importer - It retrieves data from the specified .xlsx file and sets property values in the project according to that data.
+    - Zones numbering - It numbers the zones by assigning them an id based on their location.
+    - Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
+    - IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Moreover to objects with the same dimensions assign the id of the first of these twin elements. Great for cleaning up the mess of item IDs.
+    - Shared Id for walls - It assigns the same id for these walls which have the same construction composite.
+    - Table of furniture - It creates and saves worksheet consists of a list of objects in the project, broken down by the area in which they are located. It displays also information about them and calculating total and partial sums of prices for all of assigned objects. 
     I also created a separate package of functions used in the indicated scripts, especially for the most extensive Zone Allocation script. It can be found in the location: "Ustawiające właściwości\Pakiet"
 
 # Setup
@@ -124,6 +125,15 @@ All analyzed objects must be on visible layers. The script does not analyze shap
 ## Shared Id for walls
 Assigns a common Id to walls that share a layered structure. The Id of the earliest placed wall with the given structure is assigned.
 All analyzed walls must be on visible layers. The script analyzes only the walls.
+
+## Table of furniture
+It created and saves new Excel files in location specified by two user defined variables contains
+file name and its location. It gets values from properties given in "properties" variable. 
+Properties stated in the brackets are user defined. Make sure they are all available in the project. 
+The names of the properties are given in Polish. You can change it if necessary by modifying the contents
+of the variable named "properties". 
+The script creates a new sheet, where it includes the results of the assignments made and the property values taken from Archicad. Viewed from the left, the following are placed: the name and number of the zone associated with a given group of objects; the object's id, its name, the dimensions composed of the concatenated values of the individual dimensions, the quantity, the unit price and the summed value of all the units of a given object. Headers of columns are default in Polish language, but can be modified by setting variable named "titles" 
+Also calculated is the sum of the price value of all objects in each room and the total value of all those included in the sheet. Summaries go into the sheet not as values, but as summation formulas that can be used to quickly check the price values of different design variants.
  
 # Project Status
 
