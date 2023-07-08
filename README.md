@@ -1,6 +1,6 @@
 # Archicad-API-Scripts
 
-Scripts to automate some operations in Archicad
+Scripts to automate some operations in Archicad.
 
 # Table of Contents
 
@@ -23,36 +23,30 @@ and make changes to model elements.
 
 # Technologies Used
 
-    Python                version 3.10
-    archicad              version 24.3000
-    openpyxl              version 3.0.7
-    et-xmlfile            version 1.1.0
-    lxml                  version 4.9.3
-    python-docx           version 0.8.11
+Packages used for this project are listed in *requirements.txt*
 
 
 # Features
 
 List the ready scripts here:
-    
-  Scripts printing information on the screen:
-    - Navigator Elements - It displays a tree showing the available elements in the navigator and their hierarchy.
-    - Project Elements - It subtotals the elements of each type in the project and prints the results on the screen.
-    - Repeating IDs - It displays id values that occur more than once in the project.
-    - Sorting - It sorts elements of a given type according to the first specified value in ascending or descending order.
-    - Check Properties - It displays values of all selected properties for all elements of the specified type.
-    - All properties - It displays names of all properties available in the project.
-    - Get property guid - It gets guid of selected property and displays on the screen.
+  - Navigator Elements - It displays a tree showing the available elements in the navigator and their hierarchy.
+  - Project Elements - It subtotals the elements of each type in the project and prints the results on the screen.
+  - Repeating IDs - It displays id values that occur more than once in the project.
+  - Sorting - It sorts elements of a given type according to the first specified value in ascending or descending order.
+  - Check Properties - It displays values of all selected properties for all elements of the specified type.
+  - All properties - It displays names of all properties available in the project.
+  - Get property guid - It gets guid of selected property and displays on the screen.
     Scripts that set properties of project elements:
-     -Excel exporter - It creates a new .xlsx file and places in it the values of the indicated properties from the elements highlighted in the opened Archicad's window .
-    - Excel importer - It retrieves data from the specified .xlsx file and sets property values in the project according to that data.
-    - Zones numbering - It numbers the zones by assigning them an id based on their location.
-    - Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
-    - IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Moreover to objects with the same dimensions assign the id of the first of these twin elements. Great for cleaning up the mess of item IDs.
-    - Room report - It collects data on the zone representing the room in question and inserts it into the indicated file at the indicated locations.
-    - Shared Id for walls - It assigns the same id for these walls which have the same construction composite.
-    - Table of furniture - It creates and saves worksheet consists of a list of objects in the project, broken down by the area in which they are located. It displays also information about them and calculating total and partial sums of prices for all of assigned objects. 
-    I also created a separate package of functions used in the indicated scripts, especially for the most extensive Zone Allocation script. It can be found in the location: "Ustawiające właściwości\Pakiet"
+  - Excel exporter - It creates a new .xlsx file and places in it the values of the indicated properties from the elements     highlighted in the opened Archicad's window .
+  - Excel importer - It retrieves data from the specified .xlsx file and sets property values in the project according to that data.
+  - Zones numbering - It numbers the zones by assigning them an id based on their location.
+  - Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
+  - IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Moreover to objects with the same dimensions assign the id of the first of these twin elements. Great for cleaning up the mess of item IDs.
+  - Room report - It collects data on the zone representing the room in question and inserts it into the indicated file at the indicated locations.
+  - Shared Id for walls - It assigns the same id for these walls which have the same construction composite.
+  - Floor space distribution- It creates plots describing the share of individual zones in the area of the entire floor.
+  - Table of furniture - It creates and saves worksheet consists of a list of objects in the project, broken down by the area in which they are located. It displays also information about them and calculating total and partial sums of prices for all of assigned objects. 
+  I also created a separate package of functions used in the indicated scripts, especially for the most extensive Zone Allocation script. It can be found in the location: "Ustawiające właściwości\Pakiet"
 
 # Setup
 
@@ -137,6 +131,18 @@ All analyzed objects must be on visible layers. The script does not analyze shap
 Assigns a common Id to walls that share a layered structure. The Id of the earliest placed wall with the given structure is assigned.
 All analyzed walls must be on visible layers. The script analyzes only the walls.
 
+## Floor Space Distribution
+Properties from the 'Other/Properties/Item.xml' file must be available for the script to run in the project. These must be imported before running it.
+Using the 'precision' variable, the user can set the rounding of the values shown on the charts. 
+On the other hand, the 'checked_stories' variable is the names of the floors that will be analyzed. A separate chart will be generated for each of these floors. If this variable is empty, then the script will subject all floors to analysis.
+The 'plot_folder' stores the path to the folder where the charts are to be stored. By default, it is 'Other/plots'.
+Using the 'prefix_mode' variable, the user determines whether he wants to see the name of the zone together with its number or the name alone on the chart. Taking both 
+parameters together is necessary in case the names of the rooms repeat in the 
+BIM model. Otherwise, the Matplotlib library will overwrite their previous 
+occurrences and the generated drawing will be incorrect.
+For each of the zones located on a given floor, the percentages of the share of the total area accounted for by all zones on that floor are assigned. If the value of the smallest of the zones is less than 5%, then a bar chart will be generated, otherwise a pie chart will be produced.
+The files that are the end result of the script are automatically saved with the floor name to PNG format.
+
 ## Table of furniture
 It created and saves new Excel files in location specified by two user defined variables contains
 file name and its location. It gets values from properties given in "properties" variable. 
@@ -148,7 +154,7 @@ Also calculated is the sum of the price value of all objects in each room and th
  
 # Project Status
 
-Project is: in improvement. New scripts are added.
+Project is: done. But the quality of the code is currently being improved.
 
 # Room for Improvement
 
