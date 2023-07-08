@@ -1,3 +1,5 @@
 archicad==26.3000
 et-xmlfile==1.1.0
 openpyxl==3.0.10
+lxml=4.9.3
+python-docx=0.8.11

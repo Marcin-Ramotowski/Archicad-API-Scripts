@@ -27,6 +27,8 @@ and make changes to model elements.
     archicad              version 24.3000
     openpyxl              version 3.0.7
     et-xmlfile            version 1.1.0
+    lxml                  version 4.9.3
+    python-docx           version 0.8.11
 
 
 # Features
@@ -47,6 +49,7 @@ List the ready scripts here:
     - Zones numbering - It numbers the zones by assigning them an id based on their location.
     - Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
     - IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Moreover to objects with the same dimensions assign the id of the first of these twin elements. Great for cleaning up the mess of item IDs.
+    - Room report - It collects data on the zone representing the room in question and inserts it into the indicated file at the indicated locations.
     - Shared Id for walls - It assigns the same id for these walls which have the same construction composite.
     - Table of furniture - It creates and saves worksheet consists of a list of objects in the project, broken down by the area in which they are located. It displays also information about them and calculating total and partial sums of prices for all of assigned objects. 
     I also created a separate package of functions used in the indicated scripts, especially for the most extensive Zone Allocation script. It can be found in the location: "Ustawiające właściwości\Pakiet"
@@ -118,6 +121,14 @@ When the script encounters at least 2 objects with the same dimensions, it assig
 The walls are divided by the script into 3 groups: external, internal and unidentified. This allocation is carried out based on the value of the "Location" property displayed in the "ID and Category" group. It must be completed for the assignment to be carried out correctly. Depending on the location so expressed, the wall ID starts with the prefix "SZ" (external), "SW" (internal) or "SN" (unidentified).
 Make sure that all items that should be assigned a new Id are visible. The script will not change the Id of objects which are not showed on the current plan.
 
+## Room report
+For the script to execute, all properties from the 'OtherProperties.xml' file must be available in the project.
+It must be imported into the project before running the script. 
+You must also export the model to an IFC file and define all the necessary project parameters before starting. 
+From the 'Project Info' space, the parameters 'Project - Name', 'Project-Phase', 'Project - Investment Address' 'Designer - Full Name' will be imported.  In addition, the user should also add 3 IFC properties to the project: 'project_number', 'start_date' and 'end_date'.
+The script processes the data and produces a report from it in a new DOCX-formatted file, in which it includes general information about the project and information about the rooms, along with a list of the objects in each room.
+In each list, duplicates are aggregated, i.e. objects occurring at least 2 times are not listed multiple times, but only once, with the sequence 'x <number_of_appearances>' appended to the name.
+
 ## Shared Id
 When the script encounters at least 2 objects with the same dimensions, it assigns them all the Id of the one that was put up the earliest.
 All analyzed objects must be on visible layers. The script does not analyze shapes and walls.
@@ -137,10 +148,10 @@ Also calculated is the sum of the price value of all objects in each room and th
  
 # Project Status
 
-Project is: done. But the quality of the code is currently being improved.
+Project is: in improvement. New scripts are added.
+
 # Room for Improvement
-* improve code in IDs assignment script - replacing the structure with a large number of 'if'
-statements on the dictionary
+
 * change polish name to english in order to code unification
 
 # Acknowledgements
