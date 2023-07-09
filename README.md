@@ -167,7 +167,7 @@ Specifies which types of elements are to be analyzed. Type names should be enter
  
 # Project Status
 
-Project is: done. But the quality of the code is currently being improved.
+Project is: done.
 
 # Acknowledgements
 
