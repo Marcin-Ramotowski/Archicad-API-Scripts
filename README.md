@@ -4,14 +4,14 @@ Scripts to automate some operations in Archicad.
 
 # Table of Contents
 
-* ![General Info](#general-information)
-* ![Technologies Used](#technologies-used)
-* ![Features](#features)
-* ![Setup](#setup)
-* ![Usages](#usages)
-* ![Project Status](#project-status)
-* ![Acknowledgements](#acknowledgements)
-* ![Contact](#contact)
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Setup](#setup)
+* [Usages](#usages)
+* [Project Status](#project-status)
+* [Acknowledgements](#acknowledgements)
+* [Contact](#contact)
 
 # General Information
 
@@ -101,7 +101,7 @@ This is what the settings at the bottom of the window should look like:
 - Run the script in your IDE.
 
 ### Modeling guidelines
- - One of the required properties called 'Name' specifies the information about an element to appear in the sheet in the 'Material' column if you can't pull layer structure, profile or material information from the element. Therefore, if you put an element from which you want to pull information, and its type is in the ![Exclusions](#exclusions) section of this documentation, then this property contains the exact information about what it is.
+ - One of the required properties called 'Name' specifies the information about an element to appear in the sheet in the 'Material' column if you can't pull layer structure, profile or material information from the element. Therefore, if you put an element from which you want to pull information, and its type is in the [Exclusions](#exclusions) section of this documentation, then this property contains the exact information about what it is.
  - In order for the script to work correctly for standing partitions that do not have uprights, care must be taken to ensure that the reference line is located exactly in the center of such a partition and that the actual thickness of the partition is specified in the settings in the 'Nominal thickness' field.
  - The script allocates to the zone elements that are at most 1 mm from the edge of the zone. The allocation mechanism works best when the edges of the object are at right angles. If elements such as walls are at a significant angle, then the allocation is slightly less accurate.
 
