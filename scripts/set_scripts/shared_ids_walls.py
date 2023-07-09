@@ -1,15 +1,15 @@
 from data_tools.connection_init import acc, act, acu
 
 walls = acc.GetElementsByType('Wall')
-a = acu.GetBuiltInPropertyId('Construction_CompositeName')
-b = acu.GetBuiltInPropertyId('General_ElementID')
-values = acc.GetPropertyValuesOfElements(walls, [a])
-ids = acc.GetPropertyValuesOfElements(walls, [b])
+compositeNameId = acu.GetBuiltInPropertyId('Construction_CompositeName')
+element_id = acu.GetBuiltInPropertyId('General_ElementID')
+values = acc.GetPropertyValuesOfElements(walls, [compositeNameId])
+ids = acc.GetPropertyValuesOfElements(walls, [element_id])
 printedTexts = []
 ElementsPropertyValues = []
 compositeNames = []
 checked = []
-numeryWystapienia = []
+indexes_occurrences = []
 i = 0
 print("Wykaz struktur warstwowych ścian w projekcie:")
 
@@ -36,22 +36,22 @@ for compositeName in compositeNames:
         if compositeName not in checked:
             for x in compositeNames:
                 if x == compositeName:
-                    numeryWystapienia.append(j)
+                    indexes_occurrences.append(j)
                 j += 1
             j = 0
-            first = numeryWystapienia[0]
+            first = indexes_occurrences[0]
             #newID = ids[first].propertyValues[0].propertyValue.value
             newID = f"SZ{l}"
             l += 1
-            while k < len(numeryWystapienia):
-                change = numeryWystapienia[k]
+            while k < len(indexes_occurrences):
+                change = indexes_occurrences[k]
                 toChange = walls[change].elementId
                 propertyValue = act.NormalStringPropertyValue(newID, 'string', 'normal')
-                x = act.ElementPropertyValue(toChange, b, propertyValue)
+                x = act.ElementPropertyValue(toChange, element_id, propertyValue)
                 ElementsPropertyValues.append(x)
                 k += 1
             k = 0
-            numeryWystapienia = []
+            indexes_occurrences = []
         checked.append(compositeName)
     i += 1
 

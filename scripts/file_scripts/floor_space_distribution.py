@@ -8,17 +8,17 @@ import os
 ''' STREFA KONFIGURACJI '''
 precision = 1 # do tylu miejsc po przecinku będą zaokrąglane wartości na wykresie
 checked_stories = ['Parter'] # nazwy sprawdzanych kondygnacji, jeśli pusta sprawdzane są wszystkie kondygnacje
-plot_folder = 'Inne/Wykresy' # ścieżka do folderu, do którego mają trafiać wygenerowane wykresy.
+plot_folder = 'others\charts' # ścieżka do folderu, do którego mają trafiać wygenerowane wykresy.
 prefix_mode = True # jeśli True, wyświetla na wykresie nazwę razem z numerem strefy, jeśli False bez numeru.
 
-properties_names = ['Zone_ZoneName', 'Zone_NetArea', ['Pozycja', 'Nazwa kondygnacji'], 'Zone_ZoneNumber']
-property_path = 'Inne/Właściwości/pozycja.xml'
-run = is_all_properties_available(properties_names, property_path)
+all_properties = acc.GetAllPropertyNames()
+needed_properties = ['Zone_ZoneName', 'Zone_NetArea', ['Pozycja', 'Nazwa kondygnacji'], 'Zone_ZoneNumber']
+run = is_all_properties_available(all_properties, needed_properties)
 
 if run:
     zones = acc.GetElementsByType('Zone')
     properties_ids = [acu.GetBuiltInPropertyId(name) if type(name) is str else acu.GetUserDefinedPropertyId(*name)
-                      for name in properties_names]
+                      for name in needed_properties]
     properties_values = acc.GetPropertyValuesOfElements(zones, properties_ids)
     elements_values = [cell.value for row in properties_values for cell in row]
     story_zones = {}

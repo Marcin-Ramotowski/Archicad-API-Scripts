@@ -7,13 +7,13 @@ from uuid import UUID
 
 
 precision = 1
-properties_names = ['Zone_ZoneName', 'Zone_NetArea', ['Dane pomieszczenia', 'Kolor ścian'],
+needed_properties = ['Zone_ZoneName', 'Zone_NetArea', ['Dane pomieszczenia', 'Kolor ścian'],
                     ['Specyfikacja produktu', 'Nazwa']]
-property_path = 'Inne\Właściwości\pomieszczenia.xml'
-run = is_all_properties_available(properties_names, property_path)
+all_properties = acc.GetAllPropertyNames()
+run = is_all_properties_available(all_properties, needed_properties)
 
 if run:
-    ifc_file = ifcopenshell.open("Inne\Pliki IFC\Model testowy.ifc")
+    ifc_file = ifcopenshell.open("others\ifc_files\model_testowy.ifc")
 
     def unpack_ifc_property(ifc_dict):
         values = []
@@ -47,8 +47,8 @@ if run:
     project_number, start_date, end_date = unwrapped_customs
 
     # przygotowywanie listy pomieszczeń wraz z przydzielonymi do nich obiektami
-    zone_properties = properties_names[:3]
-    object_properties = [properties_names[3]]
+    zone_properties = needed_properties[:3]
+    object_properties = [needed_properties[3]]
     zone_properties_ids = [acu.GetBuiltInPropertyId(name) if type(name) is str else acu.GetUserDefinedPropertyId(*name)
                       for name in zone_properties]
     object_properties_ids = [acu.GetBuiltInPropertyId(name) if type(name) is str else acu.GetUserDefinedPropertyId(*name)

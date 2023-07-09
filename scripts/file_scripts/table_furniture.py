@@ -7,8 +7,8 @@ import os
 
 
 ''' Konfiguracja skryptu '''
-output_file_name = r"Zestawienie mebli według pomieszczeń2.xlsx"  # Nazwa wyjściowego arkusza Excel
-output_folder = r"C:\Users\asus\Downloads\Python skrypty\Inne\Arkusze"  # Ścieżka wyjściowego arkusza
+output_file_name = r"Zestawienie mebli według pomieszczeń.xlsx"  # Nazwa wyjściowego arkusza Excel
+output_folder = r"others\worksheets"  # Ścieżka wyjściowego arkusza
 properties = ['IdAndCategories_RelatedZoneNumber', 'IdAndCategories_RelatedZoneName', 'General_ElementID',
               ('Specyfikacja produktu', 'Nazwa'), 'Geometry_ObjectLength', 'General_Width',
                 'General_Height',  ('Specyfikacja produktu', 'Cena zakupu'),]

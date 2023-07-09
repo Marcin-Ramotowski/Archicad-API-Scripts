@@ -1,11 +1,11 @@
-from data_tools.connection_init import acc, act, acu
+from data_tools.connection_init import acc, acu
 
 
 walls = acc.GetElementsByType('CurtainWall')
-a = acu.GetBuiltInPropertyId('General_Thickness')
-b = acu.GetBuiltInPropertyId('General_ElementID')
-values = acc.GetPropertyValuesOfElements(walls, [a])
-ids = acc.GetPropertyValuesOfElements(walls, [b])
+thickness = acu.GetBuiltInPropertyId('General_Thickness')
+element_id = acu.GetBuiltInPropertyId('General_ElementID')
+values = acc.GetPropertyValuesOfElements(walls, [thickness])
+ids = acc.GetPropertyValuesOfElements(walls, [element_id])
 i = 0
 for Propertyvalue in values:
     status = Propertyvalue.propertyValues[0].propertyValue.status

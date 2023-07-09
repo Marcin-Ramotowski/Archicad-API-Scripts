@@ -6,9 +6,9 @@ import os
 
 
 ''' KONFIGURACJA SKRYPTU '''
-fileIFC = "/Volumes/05_Modelowanie/Python skrypty/Inne/Pliki IFC/4 modelowanie.ifc"  # Ścieżka pliku IFC
+fileIFC = "others\ifc_files\model_testowy.ifc"  # Ścieżka pliku IFC
 outputFileName = "Zestawienie ścian według pomieszczeń.xlsx"  # Nazwa wyjściowego arkusza Excel
-outputFolder = "/Volumes/05_Modelowanie/Python skrypty/Inne/Arkusze"  # Ścieżka wyjściowego arkusza
+outputFolder = "others\worksheets"  # Ścieżka wyjściowego arkusza
 typesOfElements = ['Ściana', 'Przegroda']  # rozpatrywane typy elementów
 StatesOfCurtainWall = (True, False)
 

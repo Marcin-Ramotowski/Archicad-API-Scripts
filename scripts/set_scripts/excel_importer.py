@@ -4,7 +4,7 @@ import openpyxl
 
 
 ''' STREFA KONFIGURACJI '''
-excel_file_path = r'Inne\Arkusze\Dane_obiektow.xlsx'
+excel_file_path = r'others\worksheets\objects_data.xlsx'
 sheet_name = "Sheet"
 aliases = {}
 

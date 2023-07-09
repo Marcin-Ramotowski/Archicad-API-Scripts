@@ -1,4 +1,4 @@
-from data_tools.connection_init import acc, act, acu
+from data_tools.connection_init import acc
 
 
 all_names=acc.GetAllPropertyNames()

@@ -1,4 +1,4 @@
-from data_tools.connection_init import acc, act, acu
+from data_tools.connection_init import acu
 
 
 propertyID = acu.GetBuiltInPropertyId('General_3DLength')

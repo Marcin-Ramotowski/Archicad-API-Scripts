@@ -9,17 +9,17 @@ elementIds = acc.GetPropertyValuesOfElements(elements, [elementID])
 boundingBoxes = acc.Get2DBoundingBoxes(elements)
 heightId = acu.GetBuiltInPropertyId('General_Height')
 heights = acc.GetPropertyValuesOfElements(elements, [heightId])
-wymiary = []
-sprawdzone = []
+dimensions = []
+checked = []
 setOfIds = []
-numeryWystapienia = []
+indexes_occurrences = []
 ElementPropertyValues = []
 i = 0
 for box in boundingBoxes:
-    Type = types[i].propertyValues[0].propertyValue.value
-    if Type == 'Kształt' or Type == 'Ściana':  # strefa wyjątków
+    elem_type = types[i].propertyValues[0].propertyValue.value
+    if elem_type == 'Kształt' or elem_type == 'Ściana':  # strefa wyjątków
         text = f"Off{i}"
-        wymiary.append(text)
+        dimensions.append(text)
         i += 1
         continue
     xMin = box.boundingBox2D.xMin
@@ -30,38 +30,38 @@ for box in boundingBoxes:
     length = round(yMax - yMin, 3)
     height = round(heights[i].propertyValues[0].propertyValue.value, 3)
     text = f"{length}m x {width}m x {height}m"
-    wymiary.append(text)
+    dimensions.append(text)
     i += 1
 i = j = 0
 k = 1
 check = False
-for wymiar in wymiary:
-    ilosc = wymiary.count(wymiar)
-    if ilosc > 1:
+for dimension in dimensions:
+    amount = dimensions.count(dimension)
+    if amount > 1:
         element = elementIds[i].propertyValues[0].propertyValue.value
         setOfIds.append(element)
         if len(setOfIds) > 0:
             if check is False:
                 print("Istnieją w projekcie obiekty o identycznych wymiarach.")
                 check = True
-        if wymiar not in sprawdzone:
-            for x in wymiary:
-                if x == wymiar:
-                    numeryWystapienia.append(j)
+        if dimension not in checked:
+            for x in dimensions:
+                if x == dimension:
+                    indexes_occurrences.append(j)
                 j += 1
             j = 0
-            first = numeryWystapienia[0]
+            first = indexes_occurrences[0]
             newID = elementIds[first].propertyValues[0].propertyValue.value
-            while k < len(numeryWystapienia):
-                change = numeryWystapienia[k]
+            while k < len(indexes_occurrences):
+                change = indexes_occurrences[k]
                 toChange = elements[change].elementId
                 propertyValue = act.NormalStringPropertyValue(newID, 'string', 'normal')
                 x = act.ElementPropertyValue(toChange, elementID, propertyValue)
                 ElementPropertyValues.append(x)
                 k += 1
             k = 1
-            numeryWystapienia = []
-        sprawdzone.append(wymiar)
+            indexes_occurrences = []
+        checked.append(dimension)
     i += 1
 if len(ElementPropertyValues) > 0:
     y = acc.SetPropertyValuesOfElements(ElementPropertyValues)

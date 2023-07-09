@@ -5,7 +5,7 @@ import os
 
 
 ''' KONFIGURACJA SKRYPTU '''
-excelFilePath = r'Inne\Arkusze\Dane_scian.xlsx'
+excelFilePath = r'others\worksheets\wales_data.xlsx'
 properties_names = ['General_ElementID','Category_Position', 'General_3DLength', 'General_Width', 'General_Height']
 
 elements = acc.GetSelectedElements()
