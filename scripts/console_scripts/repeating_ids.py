@@ -1,9 +1,5 @@
-from archicad import ACConnection
+from data_tools.connection_init import acc, act, acu
 
-conn = ACConnection.connect()
-assert conn
-acc = conn.commands
-act = conn.types
 
 elementIdBuiltInPropertyUserId = act.BuiltInPropertyUserId('General_ElementID')
 elementIdPropertyId = acc.GetPropertyIds([elementIdBuiltInPropertyUserId])[0].propertyId

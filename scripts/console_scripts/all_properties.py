@@ -1,9 +1,5 @@
-from archicad import ACConnection
+from data_tools.connection_init import acc, act, acu
 
-conn = ACConnection.connect()
-assert conn
-acc = conn.commands
-act = conn.types
 
 all_names=acc.GetAllPropertyNames()
 for propertyname in all_names:

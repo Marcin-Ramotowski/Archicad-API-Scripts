@@ -1,11 +1,4 @@
-from archicad import ACConnection
-
-conn = ACConnection.connect()
-assert conn
-
-acc = conn.commands
-act = conn.types
-acu = conn.utilities
+from data_tools.connection_init import acc, act, acu
 
 allProperties = acc.GetAllPropertyNames()
 types = ['Ściana', 'Słup', 'Przegroda strukturalna', 'Strop', 'Belka', 'Dach', 'Drzwi',

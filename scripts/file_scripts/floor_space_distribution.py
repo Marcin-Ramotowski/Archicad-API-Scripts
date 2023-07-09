@@ -1,16 +1,9 @@
-from archicad import ACConnection
+from data_tools.connection_init import acc, acu
+from data_tools.functions import is_all_properties_available
 import matplotlib.pyplot as plt
 import numpy as np
-from Pakiet.funkcje import (get_properties_ids, unpack_property_values,
-is_all_properties_available)
 import os
 
-conn = ACConnection.connect()
-assert conn
-
-acc = conn.commands
-act = conn.types
-acu = conn.utilities
 
 ''' STREFA KONFIGURACJI '''
 precision = 1 # do tylu miejsc po przecinku będą zaokrąglane wartości na wykresie
@@ -24,9 +17,10 @@ run = is_all_properties_available(properties_names, property_path)
 
 if run:
     zones = acc.GetElementsByType('Zone')
-    properties_ids = get_properties_ids(properties_names)
+    properties_ids = [acu.GetBuiltInPropertyId(name) if type(name) is str else acu.GetUserDefinedPropertyId(*name)
+                      for name in properties_names]
     properties_values = acc.GetPropertyValuesOfElements(zones, properties_ids)
-    elements_values = unpack_property_values(properties_values)
+    elements_values = [cell.value for row in properties_values for cell in row]
     story_zones = {}
 
     for element in elements_values:

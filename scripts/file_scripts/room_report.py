@@ -1,16 +1,10 @@
-from archicad import ACConnection
+from collections import Counter
+from data_tools.connection_init import acc, act, acu
+from data_tools.functions import is_all_properties_available
 from docx import Document
 import ifcopenshell
-from Pakiet.funkcje import is_all_properties_available, get_properties_ids, unpack_property_values
-from collections import Counter
+from uuid import UUID
 
-
-conn = ACConnection.connect()
-assert conn
-
-acc = conn.commands
-act = conn.types
-acu = conn.utilities
 
 precision = 1
 properties_names = ['Zone_ZoneName', 'Zone_NetArea', ['Dane pomieszczenia', 'Kolor ścian'],
@@ -55,8 +49,10 @@ if run:
     # przygotowywanie listy pomieszczeń wraz z przydzielonymi do nich obiektami
     zone_properties = properties_names[:3]
     object_properties = [properties_names[3]]
-    zone_properties_ids = get_properties_ids(zone_properties)
-    object_properties_ids = get_properties_ids(object_properties)
+    zone_properties_ids = [acu.GetBuiltInPropertyId(name) if type(name) is str else acu.GetUserDefinedPropertyId(*name)
+                      for name in zone_properties]
+    object_properties_ids = [acu.GetBuiltInPropertyId(name) if type(name) is str else acu.GetUserDefinedPropertyId(*name)
+                      for name in object_properties]
     zones_ids = acc.GetElementsByType('Zone')
     zones = acc.GetElementsRelatedToZones(zones_ids, ['Object'])
     zones_descriptions = {}
@@ -68,7 +64,8 @@ if run:
         elements_counter = Counter(elements_values).items()
         elements_values = [element if times == 1 else f"{element} x {times}" 
                            for element, times in elements_counter]
-        zones_values = unpack_property_values(acc.GetPropertyValuesOfElements([zones_ids[i]], zone_properties_ids))[0]
+        cells_set = acc.GetPropertyValuesOfElements([zones_ids[i]], zone_properties_ids)
+        zones_values = [act.ElementId(UUID(cell.value))for row in cells_set for cell in row][0]
         zones_values[1] = round(zones_values[1], precision)
         raport_values = zones_values[1:] + [elements_values]
         zones_descriptions[zones_values[0]] = raport_values

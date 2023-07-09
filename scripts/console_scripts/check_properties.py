@@ -1,10 +1,5 @@
-from archicad import ACConnection
-conn = ACConnection.connect()
-assert conn
+from data_tools.connection_init import acc, act, acu
 
-acc = conn.commands
-act = conn.types
-acu = conn.utilities
 
 walls = acc.GetElementsByType('CurtainWall')
 a = acu.GetBuiltInPropertyId('General_Thickness')

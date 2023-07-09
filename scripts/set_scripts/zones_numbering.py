@@ -1,15 +1,9 @@
-from archicad import ACConnection
+from data_tools.connection_init import acc, act, acu
 from typing import List, Tuple, Iterable
 from itertools import cycle
 
-conn = ACConnection.connect()
-assert conn
 
-acc = conn.commands
-act = conn.types
-acu = conn.utilities
-
-################################ CONFIGURATION #################################
+################################ Konfiguracja skryptu ###########################
 propertyId = acu.GetBuiltInPropertyId('Zone_ZoneNumber')
 propertyValueStringPrefix = ''
 elements = acc.GetElementsByType('Zone')
@@ -69,7 +63,7 @@ for (zMin, zMax) in zClusters:
 
 acc.SetPropertyValuesOfElements(elemPropertyValues)
 
-# Print the result
+# Wyświetlenie wyników
 newValues = acc.GetPropertyValuesOfElements(elements, [propertyId])
 elemAndValuePairs = [(elements[i].elementId.guid, v.propertyValue.value) for i in range(len(newValues)) for v in newValues[i].propertyValues]
 for elemAndValuePair in sorted(elemAndValuePairs, key=lambda p: p[1]):

@@ -1,11 +1,5 @@
-from archicad import ACConnection
+from data_tools.connection_init import acc, act, acu
 
-conn = ACConnection.connect()
-assert conn
-
-acc = conn.commands
-act = conn.types
-acu = conn.utilities
 
 propertyID = acu.GetBuiltInPropertyId('General_3DLength')
 print(propertyID.guid)

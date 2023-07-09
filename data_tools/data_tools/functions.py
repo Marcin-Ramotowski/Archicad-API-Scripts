@@ -1,6 +1,3 @@
-from uuid import UUID
-from Inicjator_polaczenia import acc, act, acu
-
 def is_inside(polygon, point):
     """ Sprawdza, czy dany punkt leży wewnątrz danej figury."""
 
@@ -256,22 +253,3 @@ def translate_types(polishTypes):
         englishType = dictionary[type]
         englishTypes.append(englishType)
     return englishTypes
-
-
-def get_properties_ids(names:list):
-    properties_ids = []
-    for name in names:
-        try:
-            property_id = acu.GetBuiltInPropertyId(name) if type(name) is str else acu.GetUserDefinedPropertyId(*name)
-        except ValueError:
-            print(f'Właściwość o nazwie {name} nie istnieje. Proszę podać jej poprawną nazwę.')
-        else:
-            properties_ids.append(property_id)
-    return properties_ids
-
-
-def unpack_values(cells_set):
-    return [cell.value for row in cells_set for cell in row]
-
-def wrap_values(cells_set):
-    return [act.ElementId(UUID(cell.value))for row in cells_set for cell in row]

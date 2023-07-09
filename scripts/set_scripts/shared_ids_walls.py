@@ -1,10 +1,4 @@
-from archicad import ACConnection
-conn = ACConnection.connect()
-assert conn
-
-acc = conn.commands
-act = conn.types
-acu = conn.utilities
+from data_tools.connection_init import acc, act, acu
 
 walls = acc.GetElementsByType('Wall')
 a = acu.GetBuiltInPropertyId('Construction_CompositeName')

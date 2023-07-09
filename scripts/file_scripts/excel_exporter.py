@@ -1,6 +1,6 @@
-from Pakiet import funkcje as functions
+import data_tools.functions as functions
+from data_tools.connection_init import acc, acu
 from openpyxl import Workbook
-from Inicjator_polaczenia import acc, acu
 import os
 
 

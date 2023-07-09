@@ -31,26 +31,29 @@ Packages used for this project are listed in *requirements.txt*
 List the ready scripts here:
 
 Scripts to display information on console:
+  - All properties - It displays names of all properties available in the project.
+  - Check Properties - It displays values of all selected properties for all elements of the specified type.
   - Navigator Elements - It displays a tree showing the available elements in the navigator and their hierarchy.
   - Project Elements - It subtotals the elements of each type in the project and prints the results on the screen.
+  - Property guid - It gets guid of selected property and displays on the screen.
   - Repeating IDs - It displays id values that occur more than once in the project.
   - Sorting - It sorts elements of a given type according to the first specified value in ascending or descending order.
-  - Check Properties - It displays values of all selected properties for all elements of the specified type.
-  - All properties - It displays names of all properties available in the project.
-  - Get property guid - It gets guid of selected property and displays on the screen.
 
 Scripts saving data into new files:
   - Excel exporter - It creates a new .xlsx file and places in it the values of the indicated properties from the elements     highlighted in the opened Archicad's window.
+  - Floor space distribution- It creates plots describing the share of individual zones in the area of the entire floor.
   - Room report - It collects data on the zone representing the room in question and inserts it into the indicated file at the indicated locations.
+  - Table of furniture - It creates and saves worksheet consists of a list of objects in the project, broken down by the area in which they are located. It displays also information about them and calculating total and partial sums of prices for all of assigned objects.
   - Zone allocation - It assigns objects to the zones within which they are located based on data from the project and the exported IFC file.
 
 Scripts that set properties of project elements:
   - Excel importer - It retrieves data from the specified .xlsx file and sets property values in the project according to that data.
-  - Zones numbering - It numbers the zones by assigning them an id based on their location.
   - IDs assignment - It assigns unique ids for objects according to Archicad's default ID allocation rules. Moreover to objects with the same dimensions assign the id of the first of these twin elements. Great for cleaning up the mess of item IDs.
   - Shared Id for walls - It assigns the same id for these walls which have the same construction composite.
+  - Shared Id - It assigns to objects with the same dimensions the id of the first of these twin elements.
+  - Zones numbering - It numbers the zones by assigning them an id based on their location.
 
-  I also created a separate package of functions used in the indicated scripts, especially for the most extensive Zone Allocation script. It can be found in the location: "Ustawiające właściwości\Pakiet"
+I also created a separate package of functions used in the indicated scripts, especially for the most extensive Zone Allocation script. It can be found in the location: *./data_tools*
 
 # Setup
 

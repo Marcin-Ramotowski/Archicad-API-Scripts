@@ -1,15 +1,9 @@
-from archicad import ACConnection
-from Pakiet import funkcje as functions
+from data_tools.connection_init import acc, act, acu
+from data_tools import functions
 from openpyxl import Workbook
 from openpyxl.styles import Font, Border, Side
 import os
 
-conn = ACConnection.connect()
-assert conn
-
-acc = conn.commands
-act = conn.types
-acu = conn.utilities
 
 ''' KONFIGURACJA SKRYPTU '''
 fileIFC = "/Volumes/05_Modelowanie/Python skrypty/Inne/Pliki IFC/4 modelowanie.ifc"  # Ścieżka pliku IFC

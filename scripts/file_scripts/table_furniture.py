@@ -1,8 +1,8 @@
-from Inicjator_polaczenia import acc, acu
+from data_tools.connection_init import acc, acu
+from data_tools.functions import auto_fit_worksheet_columns, set_field_parameters
 from collections import Counter
 from openpyxl import Workbook
 from openpyxl.styles import Font, Border, Side, PatternFill, Alignment, numbers
-from Pakiet.funkcje import auto_fit_worksheet_columns, set_field_parameters
 import os
 
 

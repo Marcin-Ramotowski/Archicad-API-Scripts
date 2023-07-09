@@ -1,9 +1,5 @@
-from archicad import ACConnection
-conn = ACConnection.connect()
-assert conn
+from data_tools.connection_init import acc, act, acu
 
-acc = conn.commands
-acu = conn.utilities
 
 '''PANEL KONFIGURACJI'''
 elements = acc.GetElementsByType("Column")

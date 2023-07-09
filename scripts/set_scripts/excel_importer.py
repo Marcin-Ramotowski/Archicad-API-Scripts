@@ -1,5 +1,5 @@
-from Pakiet import funkcje as functions
-from Inicjator_polaczenia import acc, act
+from data_tools.connection_init import acc, act
+from data_tools import functions
 import openpyxl
 
 
