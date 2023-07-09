@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<BuildingInformation>
+	<PropertyDefinitionGroups>
+		<PropertyDefinitionGroup>
+			<Name>Dane strefy</Name>
+			<PropertyDefinitions>
+				<PropertyDefinition>
+					<Name>Wymagana temperatura</Name>
+					<Description>°C</Description>
+					<ValueDescriptor Type="SingleValueDescriptor">
+						<ValueType>String</ValueType>
+					</ValueDescriptor>
+					<MeasureType>Default</MeasureType>
+					<DefaultValue>
+						<DefaultValueType>Basic</DefaultValueType>
+						<Variant Type="StringVariant">
+							<Status>Normal</Status>
+							<Value>-</Value>
+						</Variant>
+					</DefaultValue>
+					<ClassificationIDs>
+						<ClassificationID>
+							<ItemID>Przestrzeń</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Dostęp</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Handel</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Komunikacja</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Kultura</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Edukacja</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Pomieszczenie techniczne</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Opieka zdrowotna</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Biuro</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Produkcja</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Rekreacja</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Laboratorium</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Mieszkanie</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Magazyn</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Transport</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+					</ClassificationIDs>
+				</PropertyDefinition>
+				<PropertyDefinition>
+					<Name>Wymagane oświetlenie</Name>
+					<Description>lux</Description>
+					<ValueDescriptor Type="SingleValueDescriptor">
+						<ValueType>String</ValueType>
+					</ValueDescriptor>
+					<MeasureType>Default</MeasureType>
+					<DefaultValue>
+						<DefaultValueType>Basic</DefaultValueType>
+						<Variant Type="StringVariant">
+							<Status>Normal</Status>
+							<Value>-</Value>
+						</Variant>
+					</DefaultValue>
+					<ClassificationIDs>
+						<ClassificationID>
+							<ItemID>Przestrzeń</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Dostęp</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Handel</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Komunikacja</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Kultura</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Edukacja</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Pomieszczenie techniczne</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Opieka zdrowotna</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Biuro</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Produkcja</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Rekreacja</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Laboratorium</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Mieszkanie</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Magazyn</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+						<ClassificationID>
+							<ItemID>Transport</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+					</ClassificationIDs>
+				</PropertyDefinition>
+				<PropertyDefinition>
+					<Name>Wsp. szklenia</Name>
+					<Description>Stosunek powierzchni przeszklonej do powierzchni netto strefy</Description>
+					<ValueDescriptor Type="SingleValueDescriptor">
+						<ValueType>Numeric</ValueType>
+					</ValueDescriptor>
+					<MeasureType>Default</MeasureType>
+					<DefaultValue>
+						<DefaultValueType>Expression</DefaultValueType>
+						<ExpressionDefaultValue>
+							<Expression>{Property:FAEC8521-13DD-41AB-BD56-A358161DF38B} / {Property:72457937-4C61-494B-A46C-316AC9AD8796}</Expression>
+						</ExpressionDefaultValue>
+					</DefaultValue>
+					<ClassificationIDs>
+						<ClassificationID>
+							<ItemID>Przestrzeń</ItemID>
+							<SystemIDName>Klasyfikacja ARCHICAD</SystemIDName>
+							<SystemIDVersion>v 2.0</SystemIDVersion>
+						</ClassificationID>
+					</ClassificationIDs>
+				</PropertyDefinition>
+			</PropertyDefinitions>
+		</PropertyDefinitionGroup>
+	</PropertyDefinitionGroups>
+</BuildingInformation>
